@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animated Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .dashboard-container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            padding: 40px 30px;
+            animation: fadeIn 1.2s ease;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1 {
+            text-align: center;
+            color: #2193b0;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: bounceIn 1s;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.7);}
+            60% { transform: scale(1.1);}
+            80% { transform: scale(0.95);}
+            100% { transform: scale(1);}
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            gap: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding: 30px 20px;
+            text-align: center;
+            color: #fff;
+            flex: 1;
+            position: relative;
+            transition: transform 0.3s;
+            cursor: pointer;
+            animation: popIn 1s;
+        }
+        .stat-card:hover {
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.8);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { color: #fff;}
+            50% { color: #ffe29f;}
+        }
+        .stat-label {
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+        .entertainment {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .emoji {
+            font-size: 2.5em;
+            animation: float 2.5s infinite ease-in-out;
+            display: inline-block;
+            margin: 0 8px;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0);}
+            50% { transform: translateY(-18px);}
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Welcome to Your Dashboard!</h1>
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="users-count">0</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="messages-count">0</div></div>

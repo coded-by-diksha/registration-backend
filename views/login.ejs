@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 32px rgba(102,166,255,0.18);
+            padding: 38px 32px 32px 32px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 28px;
+            color: #3383ff;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 500;
+            color: #444;
+            letter-spacing: 0.5px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 11px 12px;
+            margin-bottom: 20px;
+            border: 1.5px solid #e3e8ee;
+            border-radius: 7px;
+            font-size: 16px;
+            background: #f7fbff;
+            transition: border-color 0.2s;
+        }
+        input:focus {
+            border-color: #3383ff;
+            outline: none;
+            background: #eef6ff;
+        }
+        .error {
+            color: #d8000c;
+            background: #ffeaea;
+            padding: 9px 12px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            font-size: 15px;
+            display: none;
+            border: 1px solid #f5c6cb;
+        }
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(90deg, #3383ff 0%, #66a6ff 100%);
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102,166,255,0.12);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #66a6ff 0%, #3383ff 100%);
+            box-shadow: 0 4px 16px rgba(102,166,255,0.18);
+        }
+        .form-footer {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 15px;
+            color: #555;
+        }
+        .form-footer a {
+            color: #3383ff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 4px;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm" action="/login" method="POST" novalidate>
+            <div class="error" id="errorMsg"></div>
+            <label for="emailOrUsername">Email or Username</label>
+            <input type="text" id="emailOrUsername" name="emailOrUsername" required autocomplete="username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required autocomplete="current-password">
+
+            <button type="submit">Login</button>
+        </form>
+        <div class="form-footer">
+            Don't have an account?
+            <a href="/register">Register</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            var emailOrUsername = document.getElementById('emailOrUsername').value.trim();
+            var password = document.getElementById('password').value;
+            var errorMsg = document.getElementById('errorMsg');
+            errorMsg.style.display = 'none';
+            errorMsg.textContent = '';
+
+            // Basic validation
+            if (!emailOrUsername || !password) {
+                errorMsg.textContent = 'Please fill in all fields.';
+                errorMsg.style.display = 'block';
+                e.preventDefault();
+                return;
+            }
+
+            // Email format check if input looks like email
+            if (emailOrUsername.includes('@')) {
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(emailOrUsername)) {
+                    errorMsg.textContent = 'Please enter a valid email address.';
+                    errorMsg.style.display = 'block';
+                    e.preventDefault();
+                    return;
+                }
+            }
+
+            // Password length check
+            if (password.length < 6) {
+                errorMsg.textContent = 'Password must be at least 6 characters.';
+                errorMsg.style.display = 'block';
+                e.preventDefault();
+                return;
+            }
+        });
+    </script>
+</body>
+</html>
