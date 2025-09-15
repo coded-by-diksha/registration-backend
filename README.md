@@ -98,5 +98,4 @@ MIT
 
 ---
 
-*Made with ❤️ by [coded-by-diksha](https://github.com/coded-by-diksha)*
 
