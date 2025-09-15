@@ -1,5 +1,5 @@
 const express = require('express');
-const {body}=require('express-validator');
+const {body, check}=require('express-validator');
 const authController=require('../controllers/auth.js');
 const {requireauth, checkauth}=require('../middleware/authmiddleware.js');
 
@@ -13,9 +13,17 @@ const registerValidation=[
     body('password').isLength({min: 6}).withMessage('Password must be at least 6 characters long').trim(),
 ];
 
-const loginValidation=[
-    body('email').isEmail().withMessage('Please enter a valid email').normalizeEmail(),
-    body('password').isLength({min: 6}).withMessage('Password must be at least 6 characters long').trim(),
+const loginValidation = [
+    body('emailOrUsername')
+        .custom(value => {
+            // Allow either a valid email or a username (min 3 chars)
+            const isEmail = /\S+@\S+\.\S+/.test(value);
+            if (isEmail || value.length >= 3) {
+                return true;
+            }
+            throw new Error('Please enter a valid email or username');
+        }),
+    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long').trim(),
 ];
 
 router.get('/register', checkauth, authController.getRegister);

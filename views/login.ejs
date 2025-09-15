@@ -94,11 +94,12 @@
             text-decoration: underline;
         }
     </style>
+  
 </head>
 <body>
     <div class="container">
         <h2>Login to Your Account</h2>
-        <form id="loginForm" action="/login" method="POST" novalidate>
+        <form id="loginForm" action="\login" method="POST" >
             <div class="error" id="errorMsg"></div>
             <label for="emailOrUsername">Email or Username</label>
             <input type="text" id="emailOrUsername" name="emailOrUsername" required autocomplete="username">
@@ -110,7 +111,7 @@
         </form>
         <div class="form-footer">
             Don't have an account?
-            <a href="/register">Register</a>
+            <a href="\register">Register</a>
         </div>
     </div>
     <script>
@@ -148,6 +149,7 @@
                 return;
             }
         });
+        console.log("Login page loaded");
     </script>
 </body>
 </html>

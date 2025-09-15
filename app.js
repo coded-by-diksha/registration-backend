@@ -16,20 +16,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /** Configure session management */
 app.use(session({
-    secret: 'your_secret_key',
+    secret: 'mySuperSecretRandomKey123!@#',
     resave: false,
     saveUninitialized: false,
-    cookie: {secure: true, maxAge: 600000} // Session expires after 10 minutes
+    cookie: {secure: false, maxAge: 6000000} // Session expires after 100 minutes
 }));
 
 // adding routes
 app.use(authRoutes);
 
 // starting the server
-app.get('/', (req, res)=>{
-    res.send('Welcome to the Home Page');
+app.get('/', (req, res) => {
     res.redirect('/dashboard');
-
 });
 
 const PORT= process.env.PORT || 3000;

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Animated Dashboard</title>
+    <title> Dashboard</title>
     <style>
         body {
             margin: 0;
@@ -100,7 +100,7 @@
         <h1>Welcome to Your Dashboard!</h1>
         <div class="stats">
             <div class="stat-card">
-                <div class="stat-value" id="users-count">0</div>
+                <div class="stat-value" id="users-count"><%= typeof activeUsers !== 'undefined' ? activeUsers : 0 %></div>
                 <div class="stat-label">Active Users</div>
             </div>
             <div class="stat-card">
